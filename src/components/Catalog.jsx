@@ -109,7 +109,7 @@ function Product({productIndex}) {
     return(
         <div className={styles.product} productindex={productIndex}>
             <div className={styles.imageContainer}>
-                <img src={`/react-product-list/src/assets/project-assets/${product["image"]["desktop"]}`} />
+                <img src={`./react-product-list/src/assets/project-assets/${product["image"]["desktop"]}`} />
                 <div className={styles.cartBtnContainer}>
                     {(cartQty === "null") ? (
                         <AddToCartBtn func={handleAddToCart}/>
@@ -276,7 +276,7 @@ function ConfirmationItem({item}) {
     return (
         <div className={styles.confirmationItem}>
             <div className={styles.itemInfo}>
-                <img src={`/react-product-list/src/assets/project-assets/${product["image"]["thumbnail"]}`} />
+                <img src={`./react-product-list/src/assets/project-assets/${product["image"]["thumbnail"]}`} />
                 <div className={styles.infoTextContent}>
                     <p className={styles.cartItemName}>{product["name"]}</p>
                     <div className={styles.itemInfoFlex}>
