@@ -1,10 +1,11 @@
 import React, {useState, createContext, useContext, useEffect} from 'react';
 import styles from './Catalog.module.css';
-import productList from '../assets/project-assets/data.json' with {type: 'json'};
-import CartIcon from '../assets/project-assets/assets/images/icon-add-to-cart.svg';
-import CarbonNeutralIcon from '../assets/project-assets/assets/images/icon-carbon-neutral.svg';
-import EmptyCartIcon from '../assets/project-assets/assets/images/illustration-empty-cart.svg';
-import ConfirmationIcon from "../assets/project-assets/assets/images/icon-order-confirmed.svg";
+import productList from '../assets/data.json';
+import CartIcon from '/project-assets/assets/images/icon-add-to-cart.svg?url';
+import CarbonNeutralIcon from '/project-assets/assets/images/icon-carbon-neutral.svg?url';
+import EmptyCartIcon from '/project-assets/assets/images/illustration-empty-cart.svg?url';
+import ConfirmationIcon from "/project-assets/assets/images/icon-order-confirmed.svg?url";
+
 
 productList.map((object, i) => {object["id"] = i});
 const listsContext = createContext();
@@ -109,7 +110,7 @@ function Product({productIndex}) {
     return(
         <div className={styles.product} productindex={productIndex}>
             <div className={styles.imageContainer}>
-                <img src={`./src/assets/project-assets${product["image"]["desktop"]}`} />
+                <img src={`/react-product-list/project-assets${product["image"]["desktop"]}`} />
                 <div className={styles.cartBtnContainer}>
                     {(cartQty === "null") ? (
                         <AddToCartBtn func={handleAddToCart}/>
@@ -276,7 +277,7 @@ function ConfirmationItem({item}) {
     return (
         <div className={styles.confirmationItem}>
             <div className={styles.itemInfo}>
-                <img src={`./src/assets/project-assets${product["image"]["thumbnail"]}`} />
+                <img src={`react-product-list/public/project-assets${product["image"]["thumbnail"]}`} />
                 <div className={styles.infoTextContent}>
                     <p className={styles.cartItemName}>{product["name"]}</p>
                     <div className={styles.itemInfoFlex}>
