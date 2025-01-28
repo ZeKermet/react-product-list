@@ -32,8 +32,6 @@ export default function Catalog() {
                     <CartConfirmation />
                 </listsContext.Provider>
             </div>
-            
-            {/* <CartConfirm /> */}
         </div>
     );
 }
@@ -229,8 +227,6 @@ function CartItem({item}) {
         </div>
     );
 }
-
-
 
 function CartConfirmation() {
     const cartList = useContext(listsContext).cartList[0];

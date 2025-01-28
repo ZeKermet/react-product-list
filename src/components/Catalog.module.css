@@ -15,11 +15,13 @@
 }
 
 .productsContainer {
-    width: calc(3 * var(--product-width) + 2 * 24px);
     --product-width: 260px;
+    --colCount: 3;
+    --gapWidth: 24px;
+    width: calc(var(--colCount) * var(--product-width) + (var(--colCount) - 1) * var(--gapWidth));
     display: grid;
-    grid-template-columns: repeat(3, var(--product-width));
-    gap: 24px;
+    grid-template-columns: repeat(var(--colCount), var(--product-width));
+    gap: var(--gapWidth);
 }
 
 .product {
@@ -390,8 +392,7 @@
 
 @media screen and (max-width: 1359px) {
     .productsContainer {
-        width: calc(2 * var(--product-width) + 1 * 24px);
-        grid-template-columns: repeat(2, var(--product-width));
+        --colCount: 2;
     }
 }
 
@@ -402,7 +403,6 @@
     }
 
     .productsContainer {
-        --product-width: 260px;
         width: auto;
         grid-template-columns: repeat(2, 1fr);
     }
