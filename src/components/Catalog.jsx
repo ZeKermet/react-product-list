@@ -7,7 +7,7 @@ import EmptyCartIcon from '/project-assets/assets/images/illustration-empty-cart
 import ConfirmationIcon from "/project-assets/assets/images/icon-order-confirmed.svg?url";
 
 
-productList.map((object, i) => {object["id"] = i});
+productList.map((object) => {object["id"] = `#${Math.floor(Math.random() * 300000)}`});
 const listsContext = createContext();
 
 export default function Catalog() {
@@ -71,6 +71,7 @@ function Product({productIndex}) {
     const handleAddToCart = () => {
         const newCartList = [...cartList];
         newCartList.push({"id": product["id"], "quantity": 1});
+        console.log(product["id"]);
 
         setCartList(newCartList);
     }
@@ -158,8 +159,8 @@ function Cart() {
 
     let totalCartPrice = 0;
     for (const cartItem of cartList) {
-        const productPrice = productList[cartItem["id"]]["price"];
-        totalCartPrice += productPrice * cartItem["quantity"];
+        const product = findProductFromCartItem(cartItem);
+        totalCartPrice += product["price"] * cartItem["quantity"];
     }
 
     const handleConfirmOrder = () => {
@@ -199,7 +200,8 @@ function Cart() {
 function CartItem({item}) {
     const cartList = useContext(listsContext).cartList[0];
     const setCartList = useContext(listsContext).cartList[1];
-    let product = productList[item["id"]];
+    let product = findProductFromCartItem(item);
+
 
     const handleRemoveFromCart = () => {
         const newCartList = [...cartList];
@@ -237,8 +239,8 @@ function CartConfirmation() {
 
     let totalCartPrice = 0;
     for (const cartItem of cartList) {
-        const productPrice = productList[cartItem["id"]]["price"];
-        totalCartPrice += productPrice * cartItem["quantity"];
+        const product = findProductFromCartItem(cartItem);
+        totalCartPrice += product["price"] * cartItem["quantity"];
     }
 
     const handleStartNewOrder = () => {
@@ -268,7 +270,7 @@ function CartConfirmation() {
 }
 
 function ConfirmationItem({item}) {
-    const product = productList[item["id"]];
+    const product = findProductFromCartItem(item);
 
     return (
         <div className={styles.confirmationItem}>
@@ -291,4 +293,13 @@ function ConfirmationItem({item}) {
 
 function formatPrice(num) {
     return Number(Math.round(num * 100) / 100).toFixed(2);
+}
+
+function findProductFromCartItem(cartItem) {
+    for (const productItem of productList) {
+        if (productItem["id"] === cartItem["id"]) {
+            return productItem;
+        }
+    }
+    return {};
 }
