@@ -51,21 +51,8 @@ function Product({productIndex}) {
     const setCartList = useContext(listsContext).cartList[1];
 
     const product = productList[productIndex];
+    const cartItem = findCartItemFromProduct(cartList, product);
 
-    const findCartItemFromProduct = () => {
-        if (cartList.length > 0) {
-            for (let i=0; i < cartList.length; i++) {
-                if (cartList[i]["id"] === product["id"]) {
-                    return cartList[i];
-                }
-            }
-            return "null";
-        } else {
-            return "null";
-        }
-    }
-
-    const cartItem = findCartItemFromProduct();
     let cartQty = cartItem !== "null" ? cartItem["quantity"] : "null";
 
     const handleAddToCart = () => {
@@ -294,6 +281,21 @@ function ConfirmationItem({item}) {
 function formatPrice(num) {
     return Number(Math.round(num * 100) / 100).toFixed(2);
 }
+
+function findCartItemFromProduct(cartList, product) {
+    if (cartList.length > 0) {
+        for (let i=0; i < cartList.length; i++) {
+            if (cartList[i]["id"] === product["id"]) {
+                return cartList[i];
+            }
+        }
+        return "null";
+    } else {
+        return "null";
+    }
+
+}
+
 
 function findProductFromCartItem(cartItem) {
     for (const productItem of productList) {
