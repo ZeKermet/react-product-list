@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Catalog from './components/Catalog.jsx'
+import Catalog from './components/Catalog.jsx';
 
 export default function App() {
 
